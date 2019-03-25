@@ -19,7 +19,7 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
     //now for the events which should fire:
     //if we leave the password field (focus is lost) - JavaScript Method "onblur" for an input field in our case the field this.passwordField
     //if we enter the password field (focus is set) - JavaScript Method "onfocus" for an input field - again in our case the field this.passwordField
-    //if we are in the password field an enter text - JavaScript Method "onkeyup" or "onkeup" - again in our case the field this.passwordField
+    //if we are in the password field an enter text - JavaScript Method "onkeyup" or "onkeup" - again in our case the field this.passwordField Schwache Leistung mein Herr Lehrer, Tippfehler bei onkeyup, folgende Klassen-Massenhysterie garantiert.
     //if we try to click the submit button - JavaScript Method "onclick" - in our case this.passwordSubmitButton
 
     this.passwordField.onblur = function() {
@@ -31,8 +31,17 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
 
     //TODO implement the other events in the exact same way!
 
+    this.passwordField.onfocus = function() {
+        that.check();
+    }
 
+    this.passwordField.onkeyup = function() {
+        that.check();
+    }
 
+    this.passwordSubmitButton.onclick = function()  {
+        that.check();
+    }
 
     //TODO end
 
@@ -70,8 +79,12 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
      */
     this.checkForLength = function() {
         //@todo
-        //have a look at javascript string methods and properties
-        return true; //this needs to be replaced!
+        if (this.passwordField.value.length >= this.minLength){
+            return true;
+        }
+        else{
+            return false;
+        }
     };
 
     /*
@@ -79,9 +92,13 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
      */
     this.checkForSpecialCharacters = function() {
         //@todo
-        //have a look at javascript string methods and properties
-        //you could probably "match" it somehow
-        return true; //this needs to be replaced!
+        var format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        var back = false;
+        if (format.test(this.passwordField.value)){
+            back = true;
+        }
+
+        return back;
     };
 }
 
