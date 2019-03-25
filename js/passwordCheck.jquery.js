@@ -8,9 +8,9 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
     this.minLength = 8; //this is what we defined and what we need to consider in our length check
 
     //this attributes are set with our constructor
-    this.wrapperField = $(wrapperId);
-    this.passwordField = $(passwordInputFieldId);
-    this.passwordSubmitButton = $(passwordSubmitButtonId);
+    this.wrapperField = $(wrapperId); //Jquery
+    this.passwordField = $(passwordInputFieldId); //jquery
+    this.passwordSubmitButton = $(passwordSubmitButtonId); //jquery
 
 
     var that = this; //a trick because this is a keyword and means different things in a new context! Especially when you work with events or if you call functions outside your class "this" won't mean you!
@@ -52,13 +52,13 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
             //if it is long enough and has a special character - everything is fine
             if(longEnough && hasSpecialChars) {
                 this.wrapperField.removeClass(this.warningClass + ' ' + this.errorClass).addClass(this.successClass);
-                this.passwordSubmitButton.attr('disabled', false);
+                this.passwordSubmitButton.attr('disabled', false); //Jquery
             } else if(!hasSpecialChars && longEnough) { //if it is long enough but it has no special character set class warning
                 this.wrapperField.removeClass(this.successClass + ' ' + this.errorClass).addClass(this.warningClass);
-                this.passwordSubmitButton.attr('disabled', true);
+                this.passwordSubmitButton.attr('disabled', true); //Jquery
             } else { //if it is not long enough set class error
                 this.wrapperField.removeClass(this.warningClass + ' ' + this.successClass).addClass(this.errorClass);
-                this.passwordSubmitButton.attr('disabled', true);
+                this.passwordSubmitButton.attr('disabled', true); //Jquery
             }
 
 
